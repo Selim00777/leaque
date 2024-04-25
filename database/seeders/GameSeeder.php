@@ -9,7 +9,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class GameSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -87,11 +87,6 @@ class DatabaseSeeder extends Seeder
             'content' => 'Exciting match! I enjoyed watching.',
             'game_id' => $game2->id,
             'user_id' => $user2->id,
-        ]);
-
-        // Call other Seeder classes if needed
-        $this->call([
-            // Example: 'GameSeeder::class',
         ]);
     }
 }

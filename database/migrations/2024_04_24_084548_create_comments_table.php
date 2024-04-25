@@ -12,6 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
             $table->id();
             $table->string('name');
             $table->integer('team_id');
