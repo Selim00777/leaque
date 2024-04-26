@@ -2,22 +2,45 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Category;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
 class CategoryFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the model for the factory.
      *
-     * @return array<string, mixed>
+     * @return string
      */
-    public function definition(): array
+    public function model()
+    {
+        return Category::class;
+    }
+
+    /**
+     * Define the default state of the model.
+     *
+     * @return array
+     */
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
         ];
+    }
+
+    /**
+     * Create a category for a specific sport.
+     *
+     * @param string $sport
+     * @return array
+     */
+    public function forSport($sport)
+    {
+        return $this->state([
+            'name' => $this->faker->word($sport),
+            'description' => $this->faker->sentence($sport),
+        ])->create();
     }
 }

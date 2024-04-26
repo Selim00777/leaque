@@ -2,22 +2,25 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Faker\Factory as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
+use App\Models\User; // Replace with your model's namespace
 
 class UserFactory extends Factory
 {
-    protected $model = User::class;
-
+    /**
+     * The name of the factory's definition.
+     *
+     * @return string
+     */
     public function definition()
     {
-        $faker = Faker::create();
-
         return [
-            'name' => $faker->name,
-            'email' => $faker->unique()->safeEmail,
-            'password' => bcrypt('password'),
+            'name' => $this->faker->name,
+            'email' => $this->faker->safeEmail,
+            'password' => bcrypt('secret'), // Replace with your desired password hashing method
+            'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
         ];
     }
 }
