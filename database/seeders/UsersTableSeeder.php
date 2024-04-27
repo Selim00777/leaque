@@ -23,7 +23,6 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => bcrypt('password'),
-                'role' => $faker->randomElement(['user', 'admin']),
                 // Добавьте другие атрибуты пользователя по мере необходимости
             ]);
         }
