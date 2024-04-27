@@ -1,23 +1,34 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Player;
+use App\Models\Team;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Model>
- */
-class PlayersFactory extends Factory
+class PlayerFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * The name of the factory's definition.
      *
-     * @return array<string, mixed>
+     * @var string
      */
-    public function definition(): array
+    protected $name = 'Player';
+
+    /**
+     * Define the default attributes of the model.
+     *
+     * @return array
+     */
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'team_id' => factory(Team::class)->id,
+            'position' => $this->faker->randomElement(['Forward', 'Midfielder', 'Defender']),
+            // Add other player attributes as needed
         ];
     }
+
+    // Add custom factory methods for specific types of players as needed
 }

@@ -1,51 +1,36 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Database\Factories;
 
-use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use App\Models\Comment;
-use App\Models\User; // Example: Assuming Comment has a user_id relationship
-use App\Models\Game; // Example: Assuming Comment can be about a Game
-use App\Models\Player; // Example: Assuming Comment can be about a Player
-use App\Models\Team; // Example: Assuming Comment can be about a Team
+use App\Models\Game;
+use App\Models\User;
+use Faker\Generator as Faker;
 
-class CommentFactory extends Seeder
+class CommentFactory extends Factory
 {
     /**
-     * Define the model for the factory.
+     * The name of the factory's definition.
      *
-     * @return string
+     * @var string
      */
-    public function model()
-    {
-        return Comment::class;
-    }
+    protected $name = 'Comment';
 
     /**
-     * Define the factory's default state.
+     * Define the default attributes of the model.
      *
      * @return array
      */
     public function definition()
     {
         return [
-            'user_id' => factory(User::class)->create()->id, // Example: Assuming Comment has a user_id relationship
-            'commentable_type' => 'Game', // Example: Assuming Comment can be about a Game
-            'commentable_id' => factory(Game::class)->create()->id, // Example: Assuming Comment can be about a Game
             'content' => $this->faker->paragraph,
-            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'user_id' => factory(User::class)->id,
+            'commentable_type' => 'App\Models\Game', // Assuming comments are for games
+            'commentable_id' => factory(Game::class)->id,
+            // Add other comment attributes as needed
         ];
     }
 
-    /**
-     * Configure the factory.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function configure($model)
-    {
-        //
-    }
+    // Add custom factory methods for specific types of comments as needed
 }

@@ -15,10 +15,15 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('match_id');
-            $table->foreign('match_id')->references('id')->on('matches');
+
+            // Foreign key referencing the 'id' column of the 'matches' table
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')->references('id')->on('games');
+
+            // Foreign key referencing the 'id' column of the 'teams' table
             $table->unsignedBigInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams');
+
             $table->integer('score');
             $table->timestamps();
         });
