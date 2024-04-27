@@ -6,23 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    // Определение столбцов таблицы
+    protected $table = 'players';
+
     protected $fillable = [
         'name',
-        'surname',
-        'date_of_birth',
         'team_id',
+        'number',
+        'position',
     ];
 
-    // Отношения
     public function team()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo('App\Models\Team');
     }
 
-    public function matches()
+    public function scores()
     {
-        return $this->belongsToMany(Match::class);
+        return $this->hasMany('App\Models\Score');
     }
 }
-

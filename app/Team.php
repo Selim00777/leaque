@@ -6,21 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    // Определение столбцов таблицы
+    protected $table = 'teams';
+
     protected $fillable = [
         'name',
-        'city',
-        'foundation_date',
+        'league_id',
     ];
 
-    // Отношения
-    public function players()
+    public function league()
     {
-        return $this->hasMany(Player::class);
+        return $this->belongsTo('App\Models\League');
     }
 
-    public function matches()
+    public function players()
     {
-        return $this->belongsToMany(Match::class);
+        return $this->hasMany('App\Models\Player');
+    }
+
+    public function games1()
+    {
+        return $this->hasMany('App\Models\Game', 'team1_id');
+    }
+
+    public function games2()
+    {
+        return $this->hasMany('App\Models\Game', 'team2_id');
     }
 }

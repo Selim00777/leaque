@@ -6,23 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    // Определение столбцов таблицы
+    protected $table = 'comments';
+
     protected $fillable = [
+        'game_id',
         'user_id',
-        'match_id',
-        'content',
-        'created_at',
-        'updated_at',
+        'text',
     ];
 
-    // Отношения
-    public function user()
+    public function game()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\Game');
     }
 
-    public function match()
+    public function user()
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsTo('App\Models\User');
     }
 }

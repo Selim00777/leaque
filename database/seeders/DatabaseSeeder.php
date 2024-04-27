@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed users
-        $this->call(UserFactory::class); // Use UserFactory::class
+        // Заполнение пользователей
+        $this->call(UserFactory::class); // Используйте UserFactory::class
 
-        // Seed categories
+        // Заполнение категорий
         $this->call(CategoryFactory::class);
 
-        // Seed posts with comments
+        // Заполнение постов с комментариями
         $this->call([
             PostFactory::class,
             CommentFactory::class,
