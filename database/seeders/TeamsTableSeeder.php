@@ -27,12 +27,12 @@ class TeamsTableSeeder extends Seeder
             [
                 'name' => 'Team 1',
                 'city' => 'City 1',
-                'league_id' => 1, // Assuming 'league_id' exists
+                'sport_id' => 1, // Assuming 'league_id' exists
             ],
             [
                 'name' => 'Team 2',
                 'city' => 'City 2',
-                'league_id' => 2,
+                'sport_id' => 2,
             ],
             // Add more team data entries as needed
         ];

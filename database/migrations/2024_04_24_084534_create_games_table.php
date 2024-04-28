@@ -10,20 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-    {
-        Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->date('date');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->integer('team_a_id');
-            $table->integer('team_b_id');
-            $table->timestamps();
+{
+    Schema::create('games', function (Blueprint $table) {
+        $table->id();
+        $table->date('date');
+        $table->string('location');
+        $table->integer('score');
+        $table->unsignedBigInteger('sport_id');
+        $table->unsignedBigInteger('team1_id');
+        $table->unsignedBigInteger('team2_id');
+        $table->time('time');
+        $table->timestamps();
 
-            
-        });
-    }
+    });
+}
+
 
     /**
      * Reverse the migrations.
