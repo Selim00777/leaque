@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('team_id');
-            $table->date('birthdate');
+            $table->date('birthdate')->default('1990-01-01')->change();
             $table->integer('number');
             $table->string('position');
             $table->timestamps();
