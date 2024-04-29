@@ -1,24 +1,20 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $comments=\App\Models\Comment::all();
-    return view('index',compact('comments'));
-});
-Route::get('/', function () {
-    $games=\App\Models\Game::all();
-    return view('index',compact('games'));
-});
-Route::get('/', function () {
-    $players=\App\Models\Player::all();
-    return view('index',compact('players'));
-});
-Route::get('/', function () {
-    $scores=\App\Models\Score::all();
-    return view('index',compact('scores'));
-});
-Route::get('/', function () {
-    $teams=\App\Models\Team::all();
-    return view('index',compact('teams'));
-});
+
+Route::get('', [HomeController::class, 'index'])->name('home');
+
+
+Route::resource('/comments', CommentController::class);
+Route::resource('/games', GameController::class);
+Route::resource('/players', PlayerController::class);
+Route::resource('/scores', ScoreController::class);
+Route::resource('/team', TeamController::class);
+
